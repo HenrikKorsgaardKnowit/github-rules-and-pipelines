@@ -2,17 +2,15 @@ name: Production Branch Protection
 
 on:
   pull_request:
-    branches:
-      - production
+    branches: [production, staging]
 
 jobs:
   restrict-to-release-merge:
     runs-on: ubuntu-latest
     steps:
       - name: Check merge branch
-        if: github.event.pull_request.base.ref == 'production'
+        if: github.event.pull_request.base.ref == 'production' || github.event.pull_request.base.ref == 'staging'
         run: |
-          echo ${{ github.event.pull_request.head.ref }}
           if [[ ! ${{ github.event.pull_request.head.ref }} =~ release/.* ]]; then
             echo "Merges to main are only allowed from a release/ branch."
             exit 1
