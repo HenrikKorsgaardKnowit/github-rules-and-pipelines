@@ -1,8 +1,10 @@
-name: Production Branch Protection
+name: Branch Protection Release
 
 on:
   pull_request:
-    branches: [production, staging]
+    branches: 
+      - production
+      - staging
 
 jobs:
   restrict-to-release-merge:
