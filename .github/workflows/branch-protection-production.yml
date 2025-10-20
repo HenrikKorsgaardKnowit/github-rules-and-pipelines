@@ -12,7 +12,9 @@ jobs:
       - name: Check merge branch
         if: github.event.pull_request.base.ref == 'production'
         run: |
-          if [[ ${{ github.event.pull_request.head.ref }} =~ release/.* ]]; then
+          echo ${{ github.event.pull_request.head.ref }}
+          echo [${{ github.event.pull_request.head.ref }} !=~ release/.* ] 
+          if [[ ${{ github.event.pull_request.head.ref }} !=~ release/.* ]]; then
             echo "Merges to main are only allowed from a release/ branch."
             exit 1
           fi 
