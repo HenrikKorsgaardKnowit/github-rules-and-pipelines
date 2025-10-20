@@ -13,7 +13,6 @@ jobs:
         if: github.event.pull_request.base.ref == 'production'
         run: |
           echo ${{ github.event.pull_request.head.ref }}
-          echo [${{ github.event.pull_request.head.ref }} !=~ release/.* ] 
           if [[ ${{ github.event.pull_request.head.ref }} !=~ release/.* ]]; then
             echo "Merges to main are only allowed from a release/ branch."
             exit 1
