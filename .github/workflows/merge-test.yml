@@ -1,0 +1,38 @@
+name: Test merging 
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        description: Target environment for release
+        options: 
+        - staging
+        - production
+
+
+
+jobs:
+  #check-source-branch:
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: check source branch is release
+  #      if: ${{ !startsWith(github.ref_name, 'release/') }} 
+  #      uses: actions/github-script@v6
+  #      with:
+  #        script: |
+  #          core.setFailed('You cannot release to ${{ inputs.environment }} from branch:${{ github.ref_name }}. Releases must come from a release branch!')
+        
+  merge_release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@master
+  
+      - name: Merging release
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          target_branch: ${{inputs.environment}}
+          message: Merge ${{ github.ref_name }} into ${{inputs.environment}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
