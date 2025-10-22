@@ -10,7 +10,8 @@ on:
         - staging
         - production
 
-
+permissions:
+  actions: write
 
 jobs:
   #check-source-branch:
