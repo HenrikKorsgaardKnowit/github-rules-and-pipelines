@@ -23,7 +23,7 @@ permissions:
   pull-requests: write
   repository-projects: write
   security-events: write
-  statuses: write
+  #statuses: write
 
 jobs:
   #check-source-branch:
