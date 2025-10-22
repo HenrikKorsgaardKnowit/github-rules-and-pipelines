@@ -18,12 +18,12 @@ permissions:
   id-token: write
   #issues: write
   #discussions: write
-  #packages: write
-  #pages: write
+  packages: write
+  pages: write
   pull-requests: write
   repository-projects: write
-  #security-events: write
-  #statuses: write
+  security-events: write
+  statuses: write
 
 jobs:
   #check-source-branch:
